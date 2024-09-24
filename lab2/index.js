@@ -43,6 +43,7 @@ function getLocation(position) {
    userLongitude = position.coords?.longitude
    document.getElementById("latitude").innerHTML = "Longitude: " + userLatitude
    document.getElementById("longitude").innerHTML = "Latitude: " + userLongitude
+   document.getElementById("userLocationAllowed").innerHTML = "User location found using HTML5 Geolocation API!"
 
    getEarthWeather();
    getMarsWeather();
@@ -51,8 +52,9 @@ function getLocation(position) {
 // Populate earth data
 function getEarthWeather() {
    if(!userApproved) {
-      document.getElementById("latitude").innerHTML = "Did not allow access to location, defaulting to troy. Refresh to try again"
-      document.getElementById("longitude").innerHTML = ""
+      document.getElementById("latitude").innerHTML = "Longitude: " + userLatitude
+      document.getElementById("longitude").innerHTML = "Latitude: " + userLongitude
+      document.getElementById("userLocationAllowed").innerHTML = "User location not allowed, please enable."
    }
 
    url="https://api.openweathermap.org/data/2.5/weather?lat=" + userLatitude + "&lon=" + userLongitude + "&appid=" + WEATHER_API_KEY
@@ -70,8 +72,9 @@ function getEarthWeather() {
 // Populate mars data
 function getMarsWeather() {
    if(!userApproved) {
-      document.getElementById("latitude").innerHTML = "Did not allow access to location, defaulting to troy. Refresh to try again"
-      document.getElementById("longitude").innerHTML = ""
+      document.getElementById("latitude").innerHTML = "Longitude: " + userLatitude
+      document.getElementById("longitude").innerHTML = "Latitude: " + userLongitude
+      document.getElementById("userLocationAllowed").innerHTML = "User location not allowed, please enable."
    }
    url = "https://api.nasa.gov/insight_weather/?api_key=" + NASA_API_KEY + "&feedtype=json&ver=1.0"
    fetch(url)
