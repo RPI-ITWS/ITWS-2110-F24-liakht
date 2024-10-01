@@ -145,7 +145,7 @@ async function retrieveMarsWeatherData() {
          if (data.error) {
             console.error("No mars weather data available")
          } else {
-            document.getElementById('season').innerHTML = "Current: " + data.Season;
+            document.getElementById('season').innerHTML = "Current: " + data.season;
             document.getElementById('northSeason').innerHTML = "North: " + data.northSeason;
             document.getElementById('southSeason').innerHTML = "South: " + data.southSeason;
             document.getElementById('averageTemp').innerHTML = "Temp: " + data.averageTemp + " °C";

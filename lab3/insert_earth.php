@@ -30,7 +30,7 @@ if ($conn->query($sql_delete) === TRUE) {
 }
 
 // Prepare Insert Query
-$sql = "INSERT INTO earth_weather (overall, description, wind_speed, sunrise, sunset) 
+$sql = "INSERT INTO earth_weather (`overall`, `description`, `wind_speed`, `sunrise`, `sunset`) 
 VALUES ('$overall', '$description', '$windSpeed', '$sunrise', '$sunset')";
 
 // Execute query
