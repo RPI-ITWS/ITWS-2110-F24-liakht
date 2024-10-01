@@ -3,7 +3,7 @@ CREATE TABLE earth_weather (
    overall VARCHAR(255) NOT NULL,
    description VARCHAR(255) NOT NULL,
    wind_speed FLOAT NOT NULL,
-   sunrise TIME NOT NULL,
-   sunset TIME NOT NULL,
+   sunrise INT NOT NULL,
+   sunset INT NOT NULL,
    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
