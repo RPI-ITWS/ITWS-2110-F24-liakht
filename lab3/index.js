@@ -47,7 +47,7 @@ function getLocation(position) {
 }
 
 // Populate earth data
-function getEarthWeather() {
+async function getEarthWeather() {
    if(!userApproved) {
       document.getElementById("latitude").innerHTML = "Longitude: " + userLatitude
       document.getElementById("longitude").innerHTML = "Latitude: " + userLongitude
@@ -59,17 +59,14 @@ function getEarthWeather() {
       .then(response => response.json())
       .then(data => {
          insertEarthWeatherData(data)
-         retrieveEarthWeatherData()
-         // document.getElementById("overall").innerHTML = "Overall: " + data.weather[0].main
-         // document.getElementById("description").innerHTML = "Desc: " + data.weather[0].description
-         // document.getElementById("windSpeed").innerHTML = "Wind: " + data["wind"].speed + " m/s"
-         // document.getElementById("sunrise").innerHTML = "Sunrise: " + UnixToTime(data["sys"].sunrise)
-         // document.getElementById("sunset").innerHTML = "Sunset: " + UnixToTime(data["sys"].sunset)
+         .then(() => {
+            retrieveEarthWeatherData()
+         })
       });
 }
 
-function insertEarthWeatherData (data) {
-   fetch('insert_earth.php', {
+async function insertEarthWeatherData (data) {
+   await fetch('insert_earth.php', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/x-www-form-urlencoded'
@@ -84,8 +81,8 @@ function insertEarthWeatherData (data) {
    });
 }
 
-function retrieveEarthWeatherData() {
-   fetch('retrieve_earth.php') 
+async function retrieveEarthWeatherData() {
+   await fetch('retrieve_earth.php') 
       .then(response => response.json())
       .then(data => {
          if (data.error) {
@@ -117,19 +114,15 @@ function getMarsWeather() {
          const latestSol = data.sol_keys[data.sol_keys.length - 1]; 
          const marsData = data[latestSol];
          insertMarsWeatherData(marsData)
-         retrieveMarsWeatherData()
-         // document.getElementById('season').innerHTML = "Current: " + marsData.Season;
-         // document.getElementById('northSeason').innerHTML = "North: " + marsData.Northern_season;
-         // document.getElementById('southSeason').innerHTML = "South: " + marsData.Southern_season;
-         // document.getElementById('averageTemp').innerHTML = "Temp: " + marsData.AT.av + " °C";
-         // document.getElementById('atmosphericPressure').innerHTML = "Pres: " + marsData.PRE.av + " Pa";
-         // document.getElementById('marsWindSpeed').innerHTML = "Wind: " + marsData.HWS.av + " m/s";
+         .then(() => {
+            retrieveMarsWeatherData()
+         })
       });
 }
 
 
-function insertMarsWeatherData (marsData) {
-   fetch('insert_mars.php', {
+async function insertMarsWeatherData (marsData) {
+   await fetch('insert_mars.php', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/x-www-form-urlencoded'
@@ -145,8 +138,8 @@ function insertMarsWeatherData (marsData) {
    });
 }
 
-function retrieveMarsWeatherData() {
-   fetch('retrieve_mars.php') 
+async function retrieveMarsWeatherData() {
+   await fetch('retrieve_mars.php') 
       .then(response => response.json())
       .then(data => {
          if (data.error) {
