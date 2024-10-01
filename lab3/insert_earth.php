@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $servername = "localhost";  
 $username = "phpmyadmin";  
 $password = "Programa!2#4";  
@@ -17,9 +21,9 @@ if ($conn->connect_error) {
 // Data
 $overall = $_POST['overall'];
 $description = $_POST['description'];
-$windSpeed = $_POST['windSpeed'];
-$sunrise = $_POST['sunrise'];
-$sunset = $_POST['sunset'];
+$windSpeed = floatval($_POST['windSpeed']);
+$sunrise = intval($_POST['sunrise']);
+$sunset = intval($_POST['sunset']);
 
 // Delete existing data
 $sql_delete = "DELETE FROM earth_weather";
