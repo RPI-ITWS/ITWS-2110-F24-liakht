@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <Title>Interplanetary Weather Tracker</Title>
+   <link rel="stylesheet" href="index.css">
+   <script type="text/javascript" src="index.js" defer></script>
+</head>
+
+<body>
+   <h1>Interplanetary Weather Tracker</h1>
+   <div class="location-info">
+      <h3 id="userLocationAllowed"></h3>
+      <h3 id="latitude">Latitude: </h3>
+      <h3 id="longitude">Longitude: </h3>
+   </div>
+
+   <div class="weather-container">
+      <!-- Earth -->
+      <div class="planet-box">
+         <div class="icon-circle">
+            <img src="assets/earth-icon.png" alt="Earth" class="planet-icon">
+         </div>
+         <h2>Earth Weather</h2>
+      
+         <div class="conditions-weather-details">
+            <div class="conditions">
+               <h3>🌥️ Conditions 🌥️</h3>
+               <p id="overall">Overall: </p>
+               <p id="description">Desc: </p>
+            </div>
+      
+            <div class="weather-details">
+               <h3>🌡️ Weather 🌡️</h3>
+               <p id="windSpeed">Wind: </p>
+               <p id="sunrise">Sunrise: </p>
+               <p id="sunset">Sunset: </p>
+            </div>
+         </div>
+         <button id="refreshEarthWeatherBtn" class="refresh-btn">Refresh Data</button>
+      </div>
+      
+      <!-- Mars -->
+      <div class="planet-box">
+         <div class="icon-circle">
+            <img src="assets/mars-icon.png" alt="Mars" class="planet-icon">
+         </div>
+         <h2>Mars Weather</h2>
+      
+         <div class="conditions-weather-details">
+            <div class="conditions">
+               <h3>🍂 Seasons 🍂</h3>
+               <p id="season">Current: </p>
+               <p id="northSeason">North: </p>
+               <p id="southSeason">South: </p>
+            </div>
+      
+            <div class="weather-details">
+               <h3>🌡️ Weather 🌡️</h3>
+               <p id="averageTemp">Temp: </p>
+               <p id="atmosphericPressure">Pres: </p>
+               <p id="marsWindSpeed">Wind: </p>
+            </div>
+         </div>
+         <button id="refreshMarsWeatherBtn" class="refresh-btn">Refresh Data</button>
+      </div>      
+   </div>
+</body>
+
+</html>
