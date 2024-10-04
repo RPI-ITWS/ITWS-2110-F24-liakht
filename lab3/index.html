@@ -24,15 +24,25 @@
             <img src="assets/earth-icon.png" alt="Earth" class="planet-icon">
          </div>
          <h2>Earth Weather</h2>
+
+         <!-- Selection -->
+         <div class="selection-options">
+            <label>
+               <input type="checkbox" id="showEarthConditions" checked> Show Conditions
+            </label>
+            <label>
+               <input type="checkbox" id="showEarthWeather" checked> Show Weather
+            </label>
+         </div>
       
          <div class="conditions-weather-details">
-            <div class="conditions">
+            <div class="conditions" id="earthConditions">
                <h3>🌥️ Conditions 🌥️</h3>
                <p id="overall">Overall: </p>
                <p id="description">Desc: </p>
             </div>
       
-            <div class="weather-details">
+            <div class="weather-details" id="earthWeather">
                <h3>🌡️ Weather 🌡️</h3>
                <p id="windSpeed">Wind: </p>
                <p id="sunrise">Sunrise: </p>
@@ -48,17 +58,27 @@
             <img src="assets/mars-icon.png" alt="Mars" class="planet-icon">
          </div>
          <h2>Mars Weather</h2>
-         <h4 id="currentSol">Current Sol: 0</h3>
+         <h4 id="currentSol">Current Sol: 0</h4>
+
+         <!-- Selection -->
+         <div class="selection-options">
+            <label>
+               <input type="checkbox" id="showMarsSeasons" checked> Show Seasons
+            </label>
+            <label>
+               <input type="checkbox" id="showMarsWeather" checked> Show Weather
+            </label>
+         </div>
       
          <div class="conditions-weather-details">
-            <div class="conditions">
+            <div class="conditions" id="marsSeasons">
                <h3>🍂 Seasons 🍂</h3>
                <p id="season">Current: </p>
                <p id="northSeason">North: </p>
                <p id="southSeason">South: </p>
             </div>
       
-            <div class="weather-details">
+            <div class="weather-details" id="marsWeather">
                <h3>🌡️ Weather 🌡️</h3>
                <p id="averageTemp">Temp: </p>
                <p id="atmosphericPressure">Pres: </p>

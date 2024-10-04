@@ -3,6 +3,12 @@ document.getElementById('refreshMarsWeatherBtn').addEventListener('click', getMa
 document.getElementById('previousMars').addEventListener('click', decrementMars);
 document.getElementById('nextMars').addEventListener('click', incrementMars);
 
+// Selection checkboxes
+document.getElementById('showEarthConditions').addEventListener('change', toggleEarthConditions);
+document.getElementById('showEarthWeather').addEventListener('change', toggleEarthWeather);
+document.getElementById('showMarsSeasons').addEventListener('change', toggleMarsSeasons);
+document.getElementById('showMarsWeather').addEventListener('change', toggleMarsWeather);
+
 WEATHER_API_KEY = "794fd5d12fde6943bd7508fb8437bbb8"
 NASA_API_KEY = "Oph0yfAh15X1VIVI84QwQUSHZBJxcgludiDU9Ufd"
 userLatitude = 42.7284
@@ -14,6 +20,11 @@ maxMarsIndex = -1
 getLocationRequest()
 getEarthWeather();
 getMarsWeather();
+
+toggleEarthConditions();
+toggleEarthWeather();
+toggleMarsSeasons();
+toggleMarsWeather();
 
 // Learned from https://www.w3schools.com/jsref/prop_nav_geolocation.asp tutorial
 function getLocationRequest() {
@@ -189,4 +200,25 @@ function incrementMars () {
    }
    getMarsWeather()
    console.log(currentMarsIndex)
+}
+
+function toggleEarthConditions() {
+   const isVisible = document.getElementById('showEarthConditions').checked;
+   document.getElementById('earthConditions').style.display = isVisible ? 'block' : 'none';
+   console.log("A")
+}
+
+function toggleEarthWeather() {
+   const isVisible = document.getElementById('showEarthWeather').checked;
+   document.getElementById('earthWeather').style.display = isVisible ? 'block' : 'none';
+}
+
+function toggleMarsSeasons() {
+   const isVisible = document.getElementById('showMarsSeasons').checked;
+   document.getElementById('marsSeasons').style.display = isVisible ? 'block' : 'none';
+}
+
+function toggleMarsWeather() {
+   const isVisible = document.getElementById('showMarsWeather').checked;
+   document.getElementById('marsWeather').style.display = isVisible ? 'block' : 'none';
 }
