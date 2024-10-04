@@ -133,13 +133,17 @@ function getMarsWeather() {
             currentMarsIndex = data.sol_keys.length - 1
             maxMarsIndex = data.sol_keys.length - 1
          }
+
+         console.log(currentMarsIndex)
+         console.log(data)
          
          const sol = data.sol_keys[currentMarsIndex]; 
          const marsData = data[sol];
          document.getElementById('currentSol').innerHTML = "Current Sol: " + currentMarsIndex
          insertMarsWeatherData(marsData)
          .then(() => {
-            retrieveMarsWeatherData()
+            retrieveMarsWeatherData();
+            updateMarsButtons();
          })
       });
 }
@@ -183,23 +187,39 @@ async function retrieveMarsWeatherData() {
 }
 
 
-function decrementMars () {
-   currentMarsIndex -= 1
-   if (currentMarsIndex < 0) {
-      currentMarsIndex = maxMarsIndex
+function updateMarsButtons() {
+   const previousButton = document.getElementById('previousMars');
+   const nextButton = document.getElementById('nextMars');
+
+   // Disable prev if at the first sol
+   if (currentMarsIndex <= 0) {
+      previousButton.disabled = true;
+   } else {
+      previousButton.disabled = false;
    }
-   getMarsWeather()
-   console.log(currentMarsIndex)
+
+   // Disable next if at the last sol
+   if (currentMarsIndex >= maxMarsIndex) {
+      nextButton.disabled = true;
+   } else {
+      nextButton.disabled = false;
+   }
 }
 
-
-function incrementMars () {
-   currentMarsIndex += 1
-   if (currentMarsIndex > maxMarsIndex) {
-      currentMarsIndex = maxMarsIndex
+function decrementMars() {
+   if (currentMarsIndex > 0) {
+      currentMarsIndex -= 1;
+      getMarsWeather();
    }
-   getMarsWeather()
-   console.log(currentMarsIndex)
+   updateMarsButtons(); 
+}
+
+function incrementMars() {
+   if (currentMarsIndex < maxMarsIndex) {
+      currentMarsIndex += 1;
+      getMarsWeather();
+   }
+   updateMarsButtons(); 
 }
 
 function toggleEarthConditions() {
