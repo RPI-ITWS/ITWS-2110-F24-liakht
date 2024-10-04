@@ -1,11 +1,14 @@
 document.getElementById('refreshEarthWeatherBtn').addEventListener('click', getEarthWeather);
 document.getElementById('refreshMarsWeatherBtn').addEventListener('click', getMarsWeather);
+document.getElementById('previousMars').addEventListener('click', decrementMars);
+document.getElementById('nextMars').addEventListener('click', incrementMars);
 
 WEATHER_API_KEY = "794fd5d12fde6943bd7508fb8437bbb8"
 NASA_API_KEY = "Oph0yfAh15X1VIVI84QwQUSHZBJxcgludiDU9Ufd"
 userLatitude = 42.7284
 userLongitude = 73.6918
 userApproved = false
+currentMarsIndex = -1
 
 getLocationRequest()
 
@@ -111,8 +114,13 @@ function getMarsWeather() {
    fetch(url)
       .then(response => response.json())
       .then(data => {
-         const latestSol = data.sol_keys[data.sol_keys.length - 1]; 
-         const marsData = data[latestSol];
+         // Out of bounds check
+         if (currentMarsIndex < 0 || currentMarsIndex > data.sol_keys.length - 1) {
+            currentMarsIndex = data.sol_keys.length - 1
+         }
+         
+         const sol = data.sol_keys[currentMarsIndex]; 
+         const marsData = data[sol];
          insertMarsWeatherData(marsData)
          .then(() => {
             retrieveMarsWeatherData()
@@ -156,4 +164,18 @@ async function retrieveMarsWeatherData() {
       .catch(error => {
          console.error('Error retrieving data:', error);
       });
+}
+
+
+function decrementMars () {
+   currentMarsIndex -= 1
+   getMarsWeather()
+   console.log(currentMarsIndex)
+}
+
+
+function incrementMars () {
+   currentMarsIndex += 1
+   getMarsWeather()
+   console.log(currentMarsIndex)
 }

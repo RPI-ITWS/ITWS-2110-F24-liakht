@@ -98,7 +98,7 @@ p {
    padding: 0 1rem;
 }
 
-.refresh-btn {
+.btn {
    background-color: #38bdf8;
    color: white;
    padding: 0.5rem 1.5rem;
@@ -108,6 +108,6 @@ p {
    margin-top: auto;
 }
 
-.refresh-btn:hover {
+.btn:hover {
    background-color: #0ea5e9;
 }
