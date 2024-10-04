@@ -112,8 +112,3 @@ p {
    background-color: #0ea5e9;
 }
 
-btn:disabled {
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-}

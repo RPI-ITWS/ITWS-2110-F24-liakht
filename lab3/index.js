@@ -174,21 +174,19 @@ async function retrieveMarsWeatherData() {
 
 function decrementMars () {
    currentMarsIndex -= 1
+   if (currentMarsIndex < 0) {
+      currentMarsIndex = maxMarsIndex
+   }
    getMarsWeather()
    console.log(currentMarsIndex)
-   if (currentMarsIndex <= 0) {
-      document.getElementById('previousMars').disabled = true;
-   }
-   document.getElementById('nextMars').disabled = false;
 }
 
 
 function incrementMars () {
    currentMarsIndex += 1
+   if (currentMarsIndex > maxMarsIndex) {
+      currentMarsIndex = maxMarsIndex
+   }
    getMarsWeather()
    console.log(currentMarsIndex)
-   if (currentMarsIndex >= maxMarsIndex) {
-      document.getElementById('previousMars').disabled = false;
-   }
-   document.getElementById('nextMars').disabled = true;
 }
