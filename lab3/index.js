@@ -9,8 +9,11 @@ userLatitude = 42.7284
 userLongitude = 73.6918
 userApproved = false
 currentMarsIndex = -1
+maxMarsIndex = -1
 
 getLocationRequest()
+getEarthWeather();
+getMarsWeather();
 
 // Learned from https://www.w3schools.com/jsref/prop_nav_geolocation.asp tutorial
 function getLocationRequest() {
@@ -117,10 +120,12 @@ function getMarsWeather() {
          // Out of bounds check
          if (currentMarsIndex < 0 || currentMarsIndex > data.sol_keys.length - 1) {
             currentMarsIndex = data.sol_keys.length - 1
+            maxMarsIndex = data.sol_keys.length - 1
          }
          
          const sol = data.sol_keys[currentMarsIndex]; 
          const marsData = data[sol];
+         document.getElementById('currentSol').innerHTML = "Current Sol: " + currentMarsIndex
          insertMarsWeatherData(marsData)
          .then(() => {
             retrieveMarsWeatherData()
@@ -171,6 +176,10 @@ function decrementMars () {
    currentMarsIndex -= 1
    getMarsWeather()
    console.log(currentMarsIndex)
+   if (currentMarsIndex <= 0) {
+      document.getElementById('previousMars').disabled = true;
+   }
+   document.getElementById('nextMars').disabled = false;
 }
 
 
@@ -178,4 +187,8 @@ function incrementMars () {
    currentMarsIndex += 1
    getMarsWeather()
    console.log(currentMarsIndex)
+   if (currentMarsIndex >= maxMarsIndex) {
+      document.getElementById('previousMars').disabled = false;
+   }
+   document.getElementById('nextMars').disabled = true;
 }
