@@ -1,0 +1,105 @@
+/* Body and General Styling */
+body {
+   font-family: 'Arial', sans-serif;
+   background-color: #000;
+   color: #fff;
+   margin: 0;
+   padding: 20px;
+   background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Adds a subtle starry texture */
+   background-color: #0b0c1a;
+   background-size: cover;
+   background-attachment: fixed;
+   overflow-x: hidden;
+   text-transform: capitalize;
+
+}
+
+h1 {
+   text-align: center;
+   color: #fff;
+   font-size: 3em;
+   margin-bottom: 30px;
+   text-shadow: 0 0 20px #ff6347; /* Adds a glowing effect */
+}
+
+/* Weather Container */
+.weather-container {
+   display: flex;
+   justify-content: space-around;
+   flex-wrap: wrap;
+}
+
+/* Weather Boxes */
+.weather-box {
+   background-color: rgba(255, 255, 255, 0.1);
+   border: 1px solid rgba(255, 255, 255, 0.3);
+   box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
+   padding: 20px;
+   width: 45%;
+   border-radius: 20px;
+   text-align: center;
+   margin-bottom: 20px;
+   backdrop-filter: blur(5px);
+   transition: transform 0.3s ease;
+}
+
+.weather-box:hover {
+   transform: scale(1.05);
+   box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.5);
+}
+
+.weather-box h2 {
+   color: #00d4ff;
+   font-size: 1.8em;
+   margin-bottom: 15px;
+   text-shadow: 0 0 10px #00d4ff;
+}
+
+.weather-box p {
+   color: #ddd;
+   font-size: 1.2em;
+   margin: 8px 0;
+}
+
+/* Planet Images */
+.planet-image {
+   width: 120px;
+   height: 120px;
+   margin-top: 15px;
+   border-radius: 50%;
+   box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+   transition: transform 0.3s ease;
+}
+
+.planet-image:hover {
+   transform: rotate(360deg);
+   box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.7);
+}
+
+/* Arrows for Mars navigation */
+.arrows {
+   display: flex;
+   justify-content: center;
+   margin-top: 10px;
+}
+
+.arrow {
+   cursor: pointer;
+   font-size: 2em;
+   color: #fff;
+   padding: 10px 20px;
+   transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.arrow:hover {
+   color: #ff6347;
+   text-shadow: 0 0 10px #ff6347;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+   .weather-box {
+       width: 100%;
+       margin-bottom: 40px;
+   }
+}
