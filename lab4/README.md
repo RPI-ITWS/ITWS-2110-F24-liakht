@@ -5,6 +5,10 @@ I did not use many resources other than https://chatgpt.com 4o model. I fed into
 Scope:
 For the scope of this I tried to make it as similar as possible to my lab3. The only feature that I left out was the geolocation and the text that displayed it. I hard coded the longitude and latitude to be at Troy. 
 
+ZAP Report:
+Ran Zap on my complete lab and got back no red flags. File is named ZAPReport.png and can be found at 
+https://liakht.eastus.cloudapp.azure.com/ITWS-2110-F24-liakht/lab4/ZAPReport.png
+
 -------------------------------------------------------------------------------------------------------------------------------------------------
 Chat Logs:
 
