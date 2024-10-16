@@ -2,7 +2,7 @@ const earthWeatherBox = document.getElementById('earthWeather');
 const marsWeatherBox = document.getElementById('marsWeather');
 
 // Fetch Earth Weather Data from OpenWeatherMap API and store it
-fetch('http://api.openweathermap.org/data/2.5/weather?lat=42.7284&lon=73.6918&appid=794fd5d12fde6943bd7508fb8437bbb8&units=metric')
+fetch('https://api.openweathermap.org/data/2.5/weather?lat=42.7284&lon=73.6918&appid=794fd5d12fde6943bd7508fb8437bbb8&units=metric')
     .then(response => response.json())
     .then(data => {
         storeEarthWeather(data);
