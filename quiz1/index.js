@@ -108,6 +108,9 @@ function populateDropdowns(data) {
 
 // Rate diff
 function calculateRateDifference() {
+   const currency1Dropdown = document.getElementById('currency1');
+   const currency2Dropdown = document.getElementById('currency2');
+
    const currency1Rate = parseFloat(document.getElementById('currency1').value);
    const currency2Rate = parseFloat(document.getElementById('currency2').value);
    const currency1Name = currency1Dropdown.selectedOptions[0].textContent;
