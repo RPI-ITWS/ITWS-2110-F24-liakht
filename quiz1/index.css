@@ -87,10 +87,6 @@ thead {
    color: white;
 }
 
-tbody tr:nth-child(even) {
-   background-color: #f9f9f9;
-}
-
 #overall, #description, #windSpeed, #sunrise, #sunset, 
 #season, #northSeason, #southSeason, #averageTemp, #atmosphericPressure, #marsWindSpeed {
    font-size: 1.1rem;
