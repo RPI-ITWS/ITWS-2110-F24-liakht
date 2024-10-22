@@ -1,22 +1,67 @@
-// Global variables
+// Replace these with your actual API keys
 WEATHER_API_KEY = "794fd5d12fde6943bd7508fb8437bbb8"
 NASA_API_KEY = "Oph0yfAh15X1VIVI84QwQUSHZBJxcgludiDU9Ufd"
 
-getRateData()
+const defaultLatitude = 42.7284;
+const defaultLongitude = 73.6918;
 
-// Utilized this function to convert Unix to regular time (from lab3)
-// https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript 
-function UnixToTime(unix_timestamp) {
-   var date = new Date(unix_timestamp * 1000);
-   var hours = date.getHours();
-   var minutes = "0" + date.getMinutes();
-   var seconds = "0" + date.getSeconds();
-   var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+document.getElementById('refreshEarthWeatherBtn').addEventListener('click', getEarthWeather);
+document.getElementById('refreshMarsWeatherBtn').addEventListener('click', getMarsWeather);
 
-   return formattedTime
+window.onload = function () {
+   getEarthWeather();
+   getMarsWeather();
+   getRateData()
+
+};
+
+function getEarthWeather() {
+   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${defaultLatitude}&lon=${defaultLongitude}&appid=${WEATHER_API_KEY}&units=metric`;
+
+   fetch(url)
+      .then(response => response.json())
+      .then(data => {
+         document.getElementById("overall").innerHTML = "Overall: " + data.weather[0].main;
+         document.getElementById("description").innerHTML = "Description: " + data.weather[0].description;
+         document.getElementById("windSpeed").innerHTML = "Wind Speed: " + data.wind.speed + " m/s";
+         document.getElementById("sunrise").innerHTML = "Sunrise: " + UnixToTime(data.sys.sunrise);
+         document.getElementById("sunset").innerHTML = "Sunset: " + UnixToTime(data.sys.sunset);
+      })
+      .catch(error => {
+         console.error("Error fetching Earth weather:", error);
+      });
 }
 
-// Retrieve information for stocks
+function getMarsWeather() {
+   const url = `https://api.nasa.gov/insight_weather/?api_key=${NASA_API_KEY}&feedtype=json&ver=1.0`;
+
+   fetch(url)
+      .then(response => response.json())
+      .then(data => {
+         const sols = data.sol_keys;
+         const sol = sols[sols.length - 1];  
+         const marsData = data[sol];
+
+         document.getElementById("season").innerHTML = "Current Season: " + marsData.Season;
+         document.getElementById("northSeason").innerHTML = "Northern Season: " + marsData.Northern_season;
+         document.getElementById("southSeason").innerHTML = "Southern Season: " + marsData.Southern_season;
+         document.getElementById("averageTemp").innerHTML = "Average Temp: " + marsData.AT.av + " °C";
+         document.getElementById("atmosphericPressure").innerHTML = "Pressure: " + marsData.PRE.av + " Pa";
+         document.getElementById("marsWindSpeed").innerHTML = "Wind Speed: " + marsData.HWS.av + " m/s";
+      })
+      .catch(error => {
+         console.error("Error fetching Mars weather:", error);
+      });
+}
+
+function UnixToTime(unix_timestamp) {
+   const date = new Date(unix_timestamp * 1000);
+   const hours = date.getHours();
+   const minutes = "0" + date.getMinutes();
+   return hours + ':' + minutes.substr(-2);
+}
+
+
 function getRateData() {
    // Get data from API
    url="https://api.frankfurter.app/latest?base=USD"
