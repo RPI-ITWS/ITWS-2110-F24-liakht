@@ -17,7 +17,7 @@ function getRateData() {
 
 async function insertRateData (data) {
    console.log(data)
-   await fetch('insert_rate.php', {
+   await fetch('./insert_rate.php', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/x-www-form-urlencoded'
