@@ -110,13 +110,13 @@ function populateDropdowns(data) {
 function calculateRateDifference() {
    const currency1Rate = parseFloat(document.getElementById('currency1').value);
    const currency2Rate = parseFloat(document.getElementById('currency2').value);
-   const currency1Name = parseFloat(document.getElementById('currency1').textContent);
-   const currency2Name = parseFloat(document.getElementById('currency2').textContent);
+   const currency1Name = currency1Dropdown.selectedOptions[0].textContent;
+   const currency2Name = currency2Dropdown.selectedOptions[0].textContent;
 
    const multiplier = currency2Rate / currency1Rate;
 
    document.getElementById('currency1Value').textContent = currency1Name + ": " + currency1Rate
-   document.getElementById('currency2Value').textContent = currency1Name + ": " + currency2Rate
+   document.getElementById('currency2Value').textContent = currency2Name + ": " + currency2Rate
    document.getElementById('rateDifference').textContent = "Rate Multiplier: " + multiplier.toFixed(4);
 }
 
