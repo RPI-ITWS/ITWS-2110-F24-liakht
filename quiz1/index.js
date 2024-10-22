@@ -89,6 +89,7 @@ function generateTable(data) {
 
 
 function populateDropdowns(data) {
+   console.log(data)
    const currency1Dropdown = document.getElementById('currency1');
    const currency2Dropdown = document.getElementById('currency2');
 
@@ -112,6 +113,6 @@ function calculateRateDifference() {
 
    const multiplier = currency2Rate / currency1Rate;
 
-   document.getElementById('rateDifference').textContent = "Rate Multiplier: " + rateDifference.toFixed(4);
+   document.getElementById('rateDifference').textContent = "Rate Multiplier: " + multiplier.toFixed(4);
 }
 
