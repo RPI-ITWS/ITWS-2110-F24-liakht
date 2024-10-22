@@ -16,15 +16,15 @@ if ($conn->connect_error) {
    die("Connection failed: " . $conn->connect_error);
 }
 
-// Convert JSON into 2 lists of keys, Currency : List
-$currencyList = array_keys($rates);
-$rateList = array_values($rates);
-
 // Data passed in
 $amount = $_POST['amount'];
 $base = $_POST['base'];
 $date = $_POST['date'];
 $rates = json_decode($_POST['rates'], true); 
+
+// Convert JSON into 2 lists of keys, Currency : List
+$currencyList = array_keys($rates);
+$rateList = array_values($rates);
 
 // Iterate through every rate
 for ($i = 0; $i < count($currencyList); $i++) {
