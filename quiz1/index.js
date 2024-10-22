@@ -51,7 +51,7 @@ async function retrieveRateData () {
    await fetch('retrieve_rate.php')
       .then(response => response.json())
       .then(data => {
-         // Create table
+         populateDropdowns(data)
          generateTable(data);
       })
       .catch(error => {
@@ -59,7 +59,6 @@ async function retrieveRateData () {
       });
 }
 
-// Create the table
 function generateTable(data) {
    // check for safety
    if(data.length <= 0) {
@@ -86,5 +85,33 @@ function generateTable(data) {
       // Add row
       tableBody.appendChild(row);
    });
+}
+
+
+function populateDropdowns(data) {
+   const currency1Dropdown = document.getElementById('currency1');
+   const currency2Dropdown = document.getElementById('currency2');
+
+   data.forEach(item => {
+      const option1 = document.createElement('option');
+      option1.value = item.rate;
+      option1.textContent = item.currency;
+      currency1Dropdown.appendChild(option1);
+
+      const option2 = document.createElement('option');
+      option2.value = item.rate;
+      option2.textContent = item.currency;
+      currency2Dropdown.appendChild(option2);
+   });
+}
+
+// Rate diff
+function calculateRateDifference() {
+   const currency1Rate = parseFloat(document.getElementById('currency1').value);
+   const currency2Rate = parseFloat(document.getElementById('currency2').value);
+
+   const multiplier = currency2Rate / currency1Rate;
+
+   document.getElementById('rateDifference').textContent = "Rate Multiplier: " + rateDifference.toFixed(4);
 }
 
