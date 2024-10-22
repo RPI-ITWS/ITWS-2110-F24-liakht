@@ -26,6 +26,14 @@ $rates = json_decode($_POST['rates'], true);
 $currencyList = array_keys($rates);
 $rateList = array_values($rates);
 
+// Delete existing data
+$sql_delete = "DELETE FROM exchange_rates";
+if ($conn->query($sql_delete) === TRUE) {
+    echo "Old data deleted successfully.";
+} else {
+    echo "Error deleting old data: " . $conn->error;
+}
+
 // Iterate through every rate
 for ($i = 0; $i < count($currencyList); $i++) {
    $currency = $currencyList[$i];

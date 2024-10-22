@@ -4,6 +4,18 @@ NASA_API_KEY = "Oph0yfAh15X1VIVI84QwQUSHZBJxcgludiDU9Ufd"
 
 getRateData()
 
+// Utilized this function to convert Unix to regular time (from lab3)
+// https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript 
+function UnixToTime(unix_timestamp) {
+   var date = new Date(unix_timestamp * 1000);
+   var hours = date.getHours();
+   var minutes = "0" + date.getMinutes();
+   var seconds = "0" + date.getSeconds();
+   var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+   return formattedTime
+}
+
 // Retrieve information for stocks
 function getRateData() {
    // Get data from API
@@ -12,11 +24,15 @@ function getRateData() {
       .then(response => response.json())
       .then(data => {
          insertRateData(data)
+         .then(() => {
+            // Retrieve data from SQL
+            retrieveRateData()
+         })
       });
 }
 
+
 async function insertRateData (data) {
-   console.log(data)
    await fetch('./insert_rate.php', {
       method: 'POST',
       headers: {
@@ -28,6 +44,52 @@ async function insertRateData (data) {
          date: data.date,
          rates: JSON.stringify(data.rates)
       })
+   });
+}
+
+async function retrieveRateData () {
+   await fetch('retrieve_rate.php')
+      .then(response => response.json())
+      .then(data => {
+         // Create table
+         generateTable(data);
+      })
+      .catch(error => {
+         console.error('Error getting rate data:', error);
+      });
+}
+
+// Create the table
+function generateTable(data) {
+   const tableBody = document.querySelector("#exchangeRatesTable tbody");
+
+   data.forEach(item => {
+      // New row
+      const row = document.createElement("tr");
+
+      // Add to each cell
+      const amountCell = document.createElement("td");
+      amountCell.textContent = item.amount;
+      row.appendChild(amountCell);
+
+      const baseCell = document.createElement("td");
+      baseCell.textContent = item.base;
+      row.appendChild(baseCell);
+
+      const dateCell = document.createElement("td");
+      dateCell.textContent = item.date;
+      row.appendChild(dateCell);
+
+      const currencyCell = document.createElement("td");
+      currencyCell.textContent = item.currency;
+      row.appendChild(currencyCell);
+
+      const rateCell = document.createElement("td");
+      rateCell.textContent = item.rate;
+      row.appendChild(rateCell);
+
+      // Add row
+      tableBody.appendChild(row);
    });
 }
 
