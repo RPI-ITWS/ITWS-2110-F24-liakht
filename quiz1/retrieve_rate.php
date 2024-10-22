@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 $servername = "localhost";  
 $username = "phpmyadmin";  
 $password = "Programa!2#4";  
-$dbname = "weather";  
+$dbname = "quiz1";  
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
