@@ -61,9 +61,14 @@ async function retrieveRateData () {
 
 // Create the table
 function generateTable(data) {
-   document.getElementById('amount').textContent = "Amount: " + item.amount;
-   document.getElementById('base').textContent = "Base: " + item.base;
-   document.getElementById('date').textContent = "Date: " + item.date;
+   // check for safety
+   if(data.length <= 0) {
+      return
+   }
+
+   document.getElementById('amount').textContent = "Amount: " + data[0].amount;
+   document.getElementById('base').textContent = "Base: " + data[0].base;
+   document.getElementById('date').textContent = "Date: " + data[0].date;
    const tableBody = document.querySelector("#exchangeRatesTable tbody");
 
    data.forEach(item => {
