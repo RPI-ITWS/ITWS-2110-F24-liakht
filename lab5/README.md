@@ -22,7 +22,7 @@ Application Layer Securing:
 In the application layer it is the responsibility of the developer to review and secure coding practices for HTML / CSS / JS / PHP. I looked through all of my code and made sure that there was no possibility of SQL Injection or similar issues.  
 
 Safety:
-In the Security Monitoring and Application Security sections they wrote hoe it is important for the data to be validated. I implemented this with adding a .json() as well as catch blocks in case anything went wrong from my API calls. 
+In the Security Monitoring and Application Security sections they wrote how it is important for the data to be validated. I implemented this with adding a .json() as well as catch blocks in case anything went wrong from my API calls. 
 
 For safety in PHP I had already been using prepared statements as I knew about the risk of sql injection. In any case, this was an important addition I did in the past.  
 
