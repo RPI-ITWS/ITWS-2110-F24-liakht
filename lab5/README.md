@@ -27,6 +27,7 @@ In the Security Monitoring and Application Security sections they wrote how it i
 For safety in PHP I had already been using prepared statements as I knew about the risk of sql injection. In any case, this was an important addition I did in the past.  
 
 Sources:
+https://drive.google.com/file/d/1jWzd3wrQHyUmQevr4CuAjChARvraseKb/view (Textbook)
 https://acte.ltd/utils/randomkeygen
 https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal-subscription-admin
 https://learn.microsoft.com/en-us/azure/ddos-protection/manage-ddos-protection 
