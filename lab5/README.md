@@ -1,0 +1,17 @@
+Data Security:
+For my data security I went back into Lab 3 and encrypted the information that I stored in the database. While weather data is not that sensitive, I did that as practice in case I would in the future store login passwords and I would know how to do this. 
+
+IAM - Identity and Access Management:
+This was partially implemented before where only recognized users can actually access my VM and ssh into it. This was done through sudo adduser command to make sure that only myself, the TAs and the preadded professor would be able to enter. 
+
+In addition, on Azure there is one group DevTest Labs User role which has limited access to verify that everything is provided for. A user without this role are not able to change anything in my VM. As I assigned this role only to myself, then I know it is secured. 
+
+Finally, for IAM I secured it I enabled myself MFA to deter hacks and other unwanted activity on my own account.
+
+Network Security:
+I created Network Security Groups to make sure that it is more difficult for unauthorized networks to access. The first part of this was limiting the outgoing code requests to allow only for HTTP and HTTPS. In my code I only send requests to my database or to external APIs on HTTP / HTTPS. In addition, I limited access of the VM to only SSH or RDP. I block all of the other inbound traffic by default.  
+
+Logging and Auditing:
+Application Layer Securing: 
+In the application layer it is the responsibility of the developer to review and secure coding practices for HTML / CSS / JS / PHP. I looked through all of my code and made sure that there was no possibility of SQL Injection or similar issues.  
+

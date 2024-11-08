@@ -15,6 +15,7 @@ document.getElementById('showMarsWeather').addEventListener('change', toggleMars
 // Global variables
 WEATHER_API_KEY = "794fd5d12fde6943bd7508fb8437bbb8"
 NASA_API_KEY = "Oph0yfAh15X1VIVI84QwQUSHZBJxcgludiDU9Ufd"
+const encryptionKey = "HH3jKF5dPrxR5omR"
 userLatitude = 42.7284
 userLongitude = 73.6918
 userApproved = false
@@ -32,6 +33,17 @@ toggleEarthConditions();
 toggleEarthWeather();
 toggleMarsSeasons();
 toggleMarsWeather();
+
+
+
+function encryptData(data) {
+   return CryptoJS.AES.encrypt(JSON.stringify(data), encryptionKey).toString();
+}
+
+function decryptData(encryptedData) {
+   const bytes = CryptoJS.AES.decrypt(encryptedData, encryptionKey);
+   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+}
 
 // Learned from https://www.w3schools.com/jsref/prop_nav_geolocation.asp tutorial
 // Request the users geo location
@@ -102,9 +114,9 @@ async function insertEarthWeatherData (data) {
          'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: new URLSearchParams({
-         overall: data.weather[0].main,
-         description: data.weather[0].description,
-         windSpeed: data.wind.speed,
+         overall: encryptData(data.weather[0].main),
+         description: encryptData(data.weather[0].description),
+         windSpeed: encryptData(data.wind.speed),
          sunrise: data.sys.sunrise,
          sunset: data.sys.sunset
       })
@@ -121,9 +133,9 @@ async function retrieveEarthWeatherData() {
             console.error("No earth weather data available")
          } else {
             // Populate HTML
-            document.getElementById("overall").innerHTML = "Overall: " + data.overall;
-            document.getElementById("description").innerHTML = "Description: " + data.description;
-            document.getElementById("windSpeed").innerHTML = "Wind Speed: " + data.wind_speed + " m/s";
+            document.getElementById("overall").innerHTML = "Overall: " + decryptData(data.overall);
+            document.getElementById("description").innerHTML = "Description: " + decryptData(data.description);
+            document.getElementById("windSpeed").innerHTML = "Wind Speed: " + decryptData(data.wind_speed) + " m/s";
             document.getElementById("sunrise").innerHTML = "Sunrise: " + UnixToTime(data.sunrise);
             document.getElementById("sunset").innerHTML = "Sunset: " + UnixToTime(data.sunset);
          }
@@ -177,11 +189,11 @@ async function insertMarsWeatherData (marsData) {
       },
       body: new URLSearchParams({
          season: marsData.Season,
-         northSeason: marsData.Northern_season,
-         southSeason: marsData.Southern_season,
-         averageTemp: marsData.AT.av,
-         atmosphericPressure: marsData.PRE.av,
-         marsWindSpeed: marsData.HWS.av
+         northSeason: encryptData(marsData.Northern_season),
+         southSeason: encryptData(marsData.Southern_season),
+         averageTemp: encryptData(marsData.AT.av),
+         atmosphericPressure: encryptData(marsData.PRE.av),
+         marsWindSpeed: encryptData(marsData.HWS.av)
       })
    });
 }
@@ -196,12 +208,12 @@ async function retrieveMarsWeatherData() {
             console.error("No mars weather data available")
          } else {
             // Populate HTML
-            document.getElementById('season').innerHTML = "Current: " + data.season;
-            document.getElementById('northSeason').innerHTML = "North: " + data.northSeason;
-            document.getElementById('southSeason').innerHTML = "South: " + data.southSeason;
-            document.getElementById('averageTemp').innerHTML = "Temp: " + data.averageTemp + " °C";
-            document.getElementById('atmosphericPressure').innerHTML = "Pres: " + data.atmosphericPressure + " Pa";
-            document.getElementById('marsWindSpeed').innerHTML = "Wind: " + data.marsWindSpeed + " m/s";
+            document.getElementById('season').innerHTML = "Current: " + decryptData(data.season);
+            document.getElementById('northSeason').innerHTML = "North: " + decryptData(data.northSeason);
+            document.getElementById('southSeason').innerHTML = "South: " + decryptData(data.southSeason);
+            document.getElementById('averageTemp').innerHTML = "Temp: " + decryptData(data.averageTemp) + " °C";
+            document.getElementById('atmosphericPressure').innerHTML = "Pres: " + decryptData(data.atmosphericPressure) + " Pa";
+            document.getElementById('marsWindSpeed').innerHTML = "Wind: " + decryptData(data.marsWindSpeed) + " m/s";
          }
       })
       .catch(error => {
