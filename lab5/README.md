@@ -1,3 +1,5 @@
+For this lab I worked closely side by side with the textbook assigned for us to read. I found the summaries of each chapter very helpful as it helped me understand how everything I learned during the chapter combined back together. During the implementation of the encryption I had to reference guides cited below as well as some Azure references on how to setup roles and similar things in the VM.
+
 Data Security:
 For my data security I went back into Lab 3 and encrypted the information that I stored in the database. While weather data is not that sensitive, I did that as practice in case I would in the future store login passwords and I would know how to do this. I applied this to the earth weather main description and sub description to verify that it functioned correctly. 
 This can be verified by looking at the weather database and earth table seen here:
@@ -16,4 +18,13 @@ I created Network Security Groups to make sure that it is more difficult for una
 Logging and Auditing:
 Application Layer Securing: 
 In the application layer it is the responsibility of the developer to review and secure coding practices for HTML / CSS / JS / PHP. I looked through all of my code and made sure that there was no possibility of SQL Injection or similar issues.  
+
+
+Sources:
+https://acte.ltd/utils/randomkeygen
+https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal-subscription-admin
+https://learn.microsoft.com/en-us/azure/ddos-protection/manage-ddos-protection 
+https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works 
+https://www.isdntek.com/tagbot/encryptor.htm
+https://cdnjs.com/libraries/crypto-js
 
