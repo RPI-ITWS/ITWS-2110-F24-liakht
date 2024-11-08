@@ -26,5 +26,5 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignmen
 https://learn.microsoft.com/en-us/azure/ddos-protection/manage-ddos-protection 
 https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works 
 https://www.isdntek.com/tagbot/encryptor.htm
-https://cdnjs.com/libraries/crypto-js
+https://cdnjs.com/libraries/crypto-js 
 
