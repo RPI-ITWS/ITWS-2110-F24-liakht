@@ -116,7 +116,7 @@ async function insertEarthWeatherData (data) {
       body: new URLSearchParams({
          overall: encryptData(data.weather[0].main),
          description: encryptData(data.weather[0].description),
-         windSpeed: encryptData(data.wind.speed),
+         windSpeed: data.wind.speed,
          sunrise: data.sys.sunrise,
          sunset: data.sys.sunset
       })
@@ -135,7 +135,7 @@ async function retrieveEarthWeatherData() {
             // Populate HTML
             document.getElementById("overall").innerHTML = "Overall: " + decryptData(data.overall);
             document.getElementById("description").innerHTML = "Description: " + decryptData(data.description);
-            document.getElementById("windSpeed").innerHTML = "Wind Speed: " + decryptData(data.wind_speed) + " m/s";
+            document.getElementById("windSpeed").innerHTML = "Wind Speed: " + data.wind_speed + " m/s";
             document.getElementById("sunrise").innerHTML = "Sunrise: " + UnixToTime(data.sunrise);
             document.getElementById("sunset").innerHTML = "Sunset: " + UnixToTime(data.sunset);
          }
@@ -189,11 +189,11 @@ async function insertMarsWeatherData (marsData) {
       },
       body: new URLSearchParams({
          season: marsData.Season,
-         northSeason: encryptData(marsData.Northern_season),
-         southSeason: encryptData(marsData.Southern_season),
-         averageTemp: encryptData(marsData.AT.av),
-         atmosphericPressure: encryptData(marsData.PRE.av),
-         marsWindSpeed: encryptData(marsData.HWS.av)
+         northSeason: marsData.Northern_season,
+         southSeason: marsData.Southern_season,
+         averageTemp: marsData.AT.av,
+         atmosphericPressure: marsData.PRE.av,
+         marsWindSpeed: marsData.HWS.av
       })
    });
 }
@@ -208,12 +208,12 @@ async function retrieveMarsWeatherData() {
             console.error("No mars weather data available")
          } else {
             // Populate HTML
-            document.getElementById('season').innerHTML = "Current: " + decryptData(data.season);
-            document.getElementById('northSeason').innerHTML = "North: " + decryptData(data.northSeason);
-            document.getElementById('southSeason').innerHTML = "South: " + decryptData(data.southSeason);
-            document.getElementById('averageTemp').innerHTML = "Temp: " + decryptData(data.averageTemp) + " °C";
-            document.getElementById('atmosphericPressure').innerHTML = "Pres: " + decryptData(data.atmosphericPressure) + " Pa";
-            document.getElementById('marsWindSpeed').innerHTML = "Wind: " + decryptData(data.marsWindSpeed) + " m/s";
+            document.getElementById('season').innerHTML = "Current: " + data.season;
+            document.getElementById('northSeason').innerHTML = "North: " + data.northSeason;
+            document.getElementById('southSeason').innerHTML = "South: " + data.southSeason;
+            document.getElementById('averageTemp').innerHTML = "Temp: " + data.averageTemp + " °C";
+            document.getElementById('atmosphericPressure').innerHTML = "Pres: " + data.atmosphericPressure + " Pa";
+            document.getElementById('marsWindSpeed').innerHTML = "Wind: " + data.marsWindSpeed + " m/s";
          }
       })
       .catch(error => {

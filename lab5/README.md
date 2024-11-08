@@ -1,5 +1,5 @@
 Data Security:
-For my data security I went back into Lab 3 and encrypted the information that I stored in the database. While weather data is not that sensitive, I did that as practice in case I would in the future store login passwords and I would know how to do this. 
+For my data security I went back into Lab 3 and encrypted the information that I stored in the database. While weather data is not that sensitive, I did that as practice in case I would in the future store login passwords and I would know how to do this. I applied this to the earth weather main description and sub description to verify that it functioned correctly. 
 
 IAM - Identity and Access Management:
 This was partially implemented before where only recognized users can actually access my VM and ssh into it. This was done through sudo adduser command to make sure that only myself, the TAs and the preadded professor would be able to enter. 
