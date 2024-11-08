@@ -10,7 +10,7 @@ This was partially implemented before where only recognized users can actually a
 
 In addition, on Azure there is one group DevTest Labs User role which has limited access to verify that everything is provided for. A user without this role are not able to change anything in my VM. As I assigned this role only to myself, then I know it is secured. 
 
-Finally, for IAM I secured it I enabled myself MFA to deter hacks and other unwanted activity on my own account.
+Finally, for IAM I am secured more by using my RPI email which has MFA of cisco which every student has.
 
 Network Security:
 I created Network Security Groups to make sure that it is more difficult for unauthorized networks to access. The first part of this was limiting the outgoing code requests to allow only for HTTP and HTTPS. In my code I only send requests to my database or to external APIs on HTTP / HTTPS. In addition, I limited access of the VM to only SSH or RDP. I block all of the other inbound traffic by default.  
