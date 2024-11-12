@@ -12,15 +12,17 @@ document.getElementById('showEarthWeather').addEventListener('change', toggleEar
 document.getElementById('showMarsSeasons').addEventListener('change', toggleMarsSeasons);
 document.getElementById('showMarsWeather').addEventListener('change', toggleMarsWeather);
 
+document.getElementById('submitLocationBtn').addEventListener('click', handleManualLocation);
+
 // Global variables
 WEATHER_API_KEY = "794fd5d12fde6943bd7508fb8437bbb8"
 NASA_API_KEY = "Oph0yfAh15X1VIVI84QwQUSHZBJxcgludiDU9Ufd"
 const encryptionKey = "HH3jKF5dPrxR5omR"
-userLatitude = 42.7284
-userLongitude = 73.6918
-userApproved = false
-currentMarsIndex = -1
-maxMarsIndex = -1
+let userLatitude = 42.7284
+let userLongitude = 73.6918
+let userApproved = false
+let currentMarsIndex = -1
+let maxMarsIndex = -1
 
 
 // On load... request user location, get earth and mars daa
@@ -56,6 +58,43 @@ function getLocationRequest() {
       getEarthWeather();
       getMarsWeather();
    }
+}
+
+async function handleManualLocation() {
+   const locationInput = document.getElementById('locationInput').value.trim();
+
+   // Custom Lat,Lon
+   if (locationInput.includes(',')) {
+      // Assume latitude,longitude input
+      const [latitude, longitude] = locationInput.split(',').map(Number);
+      if (isNaN(latitude) || isNaN(longitude)) {
+         alert('Invalid coordinates. Please enter valid latitude and longitude.');
+         return;
+      }
+      userLatitude = latitude;
+      userLongitude = longitude;
+   } else {
+      // City input
+      const url = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(locationInput)}&limit=1&appid=${WEATHER_API_KEY}`;
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (!data.length) {
+         alert('Invalid location. Please enter a valid city or coordinates.');
+         return;
+      }
+
+      userLatitude = data[0].lat;
+      userLongitude = data[0].lon;
+   }
+
+   document.getElementById("latitude").innerHTML = "Latitude: " + userLatitude;
+   document.getElementById("longitude").innerHTML = "Longitude: " + userLongitude;
+   document.getElementById("userLocationAllowed").innerHTML = "User location set manually.";
+
+   // Fetch again
+   getEarthWeather();
+   getMarsWeather();
 }
 
 // Utilized this function to convert Unix to regular time

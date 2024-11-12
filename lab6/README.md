@@ -4,7 +4,7 @@ My current website is useful to many different kinds of people. As it displays t
 Laws: 
 Occam's Razor - Keeping the interface simple is very important to the users
 
-To improve
+To improve the usefulness I added an option for the user to input a custom location with either the city / state name or the exact longitude or latitude. Previously they were only able to default to Troy or their location through geolocation API but this allows them to select any location that they are interested in.
 
 --------------------------------------------------------
 
@@ -18,7 +18,6 @@ Doherty Threshold: Everything should load under 400ms so the user continues inte
 Jakob’s Law: Since the user spends most of their time on other websites, it is important to keep their expectations the same. 
 
 TO DO
-To improve I added an option for the user to input a custom location 
 
 --------------------------------------------------------
 
@@ -67,3 +66,7 @@ Pareto Principle: The 20% of causes is the user putting in location and the rema
 
 This application provides the user, myself and the API developers value. The user gains value through looking at information about the weather on both earth and mars. I gain value by providing this service to the users and having the ability to expand further if the website becomes popular enough. Finally, the APIs that I gather information from also gain value. The earth weather website gains value by hoping my website becomes popular enough to have charge me for the API and nasa gains value by educating other people about valuable space information. 
 
+
+
+Sources:
+https://openweathermap.org/api/geocoding-api 
