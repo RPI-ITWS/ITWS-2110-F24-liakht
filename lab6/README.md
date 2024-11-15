@@ -1,3 +1,5 @@
+ZAP SCAN: https://liakht.eastus.cloudapp.azure.com/ITWS-2110-F24-liakht/lab6/zap.png
+
 For this lab I spent my first few hours just understanding my website, the 7 factors of UX and the laws of ux website. I worked on analyzing my previous lab5 and then showed how it relates to each factor and the laws that map to it. Netx, I made a note of everything that could be improved. Finally, I spent the remaining of the time actually implementing the changes that I thought of and documented all of my work below. As one of the changes I convert lat and lon to actual names so I had to use another endpoint of the weather API, I added it to my sources list to show what documentation I was reading. 
 
 Useful
