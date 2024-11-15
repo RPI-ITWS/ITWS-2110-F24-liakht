@@ -170,3 +170,7 @@ button[disabled]:hover {
 .manual-location button:hover {
    background-color: #059669;
 }
+
+a {
+   color:inherit
+}

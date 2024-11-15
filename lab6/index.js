@@ -88,11 +88,24 @@ async function handleManualLocation() {
       userLongitude = data[0].lon;
    }
 
-   document.getElementById("latitude").innerHTML = "Latitude: " + userLatitude;
-   document.getElementById("longitude").innerHTML = "Longitude: " + userLongitude;
-   document.getElementById("userLocationAllowed").innerHTML = "User location set manually.";
+   await updateLocationInfo(userLatitude, userLongitude, false);
+}
 
-   // Fetch again
+async function updateLocationInfo(lat, lon, isGeoLocation) {
+   const reverseGeocodeUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${WEATHER_API_KEY}`;
+   const response = await fetch(reverseGeocodeUrl);
+   const locationData = await response.json();
+
+   if (locationData.length) {
+      const { name, country } = locationData[0];
+      document.getElementById('userLocationAllowed').innerHTML = `You are in: ${name}, ${country} (${isGeoLocation ? "Geolocation" : "Manual Input"})`;
+   } else {
+      document.getElementById('userLocationAllowed').innerHTML = `Location unknown, fallback to Lat: ${lat}, Lon: ${lon}`;
+   }
+
+   document.getElementById('latitude').innerHTML = "";
+   document.getElementById('longitude').innerHTML = "";
+
    getEarthWeather();
    getMarsWeather();
 }
@@ -110,16 +123,14 @@ function UnixToTime(unix_timestamp) {
 }
 
 // User accepted location
-function getLocation(position) {
+async function getLocation(position) {
    if (userApproved) {
       return
    }
    userApproved = true
    userLatitude = position.coords?.latitude
    userLongitude = position.coords?.longitude
-   document.getElementById("latitude").innerHTML = "Longitude: " + userLatitude
-   document.getElementById("longitude").innerHTML = "Latitude: " + userLongitude
-   document.getElementById("userLocationAllowed").innerHTML = "User location found using HTML5 Geolocation API!"
+   await updateLocationInfo(userLatitude, userLongitude, true);
 }
 
 // Populate earth data
